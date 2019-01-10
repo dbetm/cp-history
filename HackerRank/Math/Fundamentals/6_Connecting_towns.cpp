@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-
+// https://www.hackerrank.com/challenges/connecting-towns/problem
+// Teorema de la multiplicación, conteo, artimética modular
 using namespace std;
 
 int main() {
