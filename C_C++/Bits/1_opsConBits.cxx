@@ -13,6 +13,7 @@ int main() {
     int n;
     cout << "Escribe un número entero: ";
     cin >> n;
+    cout << "Negar número: " << negarNumero(n) << endl; 
     cout << "Bit encendido: " << comprobarBitEncendido(n, 4) << endl;
     cout << "Bit apagado: " << apagarBit(n, 1) << endl;
     cout << "Bit encendido: " << encenderBit(n, 3) << endl;
