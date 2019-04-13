@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 // For test 1, passed
 // Test 2 -> TLE
+// Implementación por fuerza bruta
 using namespace std;
 typedef long long int lli;
 
