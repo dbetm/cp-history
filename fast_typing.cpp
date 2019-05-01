@@ -15,7 +15,7 @@ double matching(int bitmask) { 			// DP state = bitmask
 		return memo[bitmask];		// simply loockup the memo table
 	if(bitmask = target)			// all students are already matched
 		return memo[bitmask] = 0;	// the cost is 0
-	
+
 	double ans = 200000000.0; 		// initialize with a large value
 	int p1, p2;
 	for(p1 = 0; p1 < 2 * N; p1++)
@@ -39,11 +39,9 @@ int main() {
 		for(i = 0; i < 2 * N - 1; i++)		// build pairwise distance table
 			for(j = i + 1; j < 2 * N; j++) 	// have you used 'hypot' before?
 				dist[i][j] = dist[j][i] = hypot(x[i] - x[j], y[i] - y[j]);
-		
+
 		// use DP to solve min weighted perfect matching on small general graph
 		for(i = 0; i < (1 << 16); i++) memo[i] = -1.0;		// set -1 to all cells
 		target = (1 << (1 << (2 * N)) - 1;
 		printf("Case %d: %.21f\n", caseNo++, matching(0));
 } } // return 0; 
-
-	
