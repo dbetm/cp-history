@@ -15,7 +15,7 @@ int getMinDistance(string s1, string s2, int m, int n, int dp[][MAX]) {
     // si la llamada recursiva ha sido llamada antes, entonces,
     // solo se consulta
     if(dp[m-1][n-1] != -1) return dp[m-1][n-1];
-    // si lo últtimos caracteres coinciden, nada se tiene que hacer
+    // si lo últimos caracteres coinciden, nada se tiene que hacer
     // solo seguir con la recursión
     else if(s1[m-1] == s2[n-1])
         return dp[m-1][n-1] = getMinDistance(s1, s2, m-1, n-1, dp);
