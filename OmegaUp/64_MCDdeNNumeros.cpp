@@ -11,14 +11,13 @@ int main() {
     cin.tie(0);
     int n, a, b, aux, ans = INT_MAX;
     cin >> n;
-    cin >> a;
+    cin >> a; // primer número
     for (int i = 1; i < n; i++) {
         cin >> b;
         aux = mcd(a, b);
         ans = min(aux, ans);
         a = b;
     }
-
     cout << ans << endl;
     return 0;
 }
