@@ -17,7 +17,7 @@ int mcp(int m, int n, vector< vector<int> > cost) {
     for (int j = 1; j <= n; j++) tc[0][j] = tc[0][j-1] + cost[0][j];
     // Buil the opt solution
     for (int i = 1; i <= m; i++) {
-        for (int j = 0; j <= n; j++) {
+        for (int j = 1; j <= n; j++) {
             tc[i][j] = cost[i][j] + min(tc[i-1][j], tc[i][j-1], tc[i-1][j-1]);
         }
     }
