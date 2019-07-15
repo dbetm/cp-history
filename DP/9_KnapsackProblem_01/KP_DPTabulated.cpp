@@ -1,5 +1,6 @@
 #include <iostream>
-
+// O(n*W) TC
+// O(n*W) SC
 using namespace std;
 
 int knapSack(int W, int wt[], int val[], int n) {
@@ -10,6 +11,9 @@ int knapSack(int W, int wt[], int val[], int n) {
             if(i == 0 || w == 0) K[i][w] = 0;
             // Si hasta el i-ésimo peso no se excede cierto peso, se considera
             else if(wt[i-1] <= w) {
+                // ¿Qué da más?
+                // 1) Considerar el artículo con peso w[i-1]
+                // 2) No considerarlo y tomar la última solución
                 K[i][w] = max(val[i-1] +  K[i-1][w-wt[i-1]], K[i-1][w]);
             }
             // Se mantiene el mismo óptimo
