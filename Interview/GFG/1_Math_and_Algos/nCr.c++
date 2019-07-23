@@ -8,9 +8,9 @@ typedef long long int lli;
 typedef vector<int> vi;
 typedef vector<long long int> vlli;
 typedef vector<double> vd;
-lli MAX = 10e9 + 7;
+uint64_t MAX = 1e9 + 7;
 
-lli combinatory(int64_t n, int64_t r);
+lli combinatory(int n, int r);
 
 int main() {
 	fastIO();
@@ -25,17 +25,14 @@ int main() {
 	return 0;
 }
 
-lli combinatory(int64_t n, int64_t k) {
-    uint64_t res = 1;
-    // Al ver el triángulo de pascal vemos que n-ésima línea es simétrica
-    // entonces podemos hacer menos cálculos si k > n-k
-    if(k > (n-k)) k = n-k;
-
-    // Calculamos
-    // bc(n,k) = [n * (n-1) * ... * (n-k+1)] / [k * (k-1) * ... * 1]
-    for (int64_t i = 0; i < k; i++) {
-        res = ((res % MAX) * (n - i)) % MAX;
-        res /= (i + 1);
+lli combinatory(int n, int k) {
+    int64_t C[k+1];
+    memset(C, 0, sizeof(C));
+    C[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        for (int j = min(i, k); j > 0; j--) {
+            C[j] = (C[j]%MAX + C[j-1]%MAX) % MAX;
+        }
     }
-    return (res % MAX);
+    return C[k] % MAX;
 }
