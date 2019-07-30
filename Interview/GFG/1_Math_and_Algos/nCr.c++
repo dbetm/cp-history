@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// No aceptado
+// Aceptado, solución con DP
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
