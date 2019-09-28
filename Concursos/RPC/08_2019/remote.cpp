@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 // J. Historical TV Remote Control
-// Estado:
+// Estado: Funcionó
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
