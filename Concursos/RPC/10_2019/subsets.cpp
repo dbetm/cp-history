@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
-// Error de compilación
+// Tiempo límite excedido
 using namespace std;
-#define watch(x) cout << (#x) << " es " << (x) << endl;
-// #define fastIO() ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
+#define fastIO() ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
 
 int main() {
     int n, q;
     cin >> n >> q;
     int arr[n];
-    int res[q] = {0};
+    int res[q];
+    memset(res, 0, sizeof(res));
     int queries[q];
     for (int i = 0; i < n; i++) cin >> arr[i];
     for (int j = 0; j < q; j++) {
