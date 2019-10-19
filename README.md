@@ -12,4 +12,6 @@ My - competitive programming - history
 6. [CodeSignal](https://codesignal.com/)
 7. [CodeForces](https://codeforces.com/)
 8. [COJ](http://coj.uci.cu/index.xhtml)
-9. [SOJ](https://www.spoj.com/)
+9. [SPOJ](https://www.spoj.com/)
+10. [MOG](https://matcomgrader.com)
+11. [A2 Online Judge](https://a2oj.com)
