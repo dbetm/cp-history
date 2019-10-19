@@ -1,0 +1,17 @@
+Pasos
+1) Generar las 3 posibles rotaciones de todas las cajas. Por simplicidad,
+consideramos las profundidad siempre como menor o igual que la anchura.
+
+2) Ordenar las 3*n cajas generadas arriba, en orden decreciente según su área.
+
+3) Después de ordenar las cajas, el problema es el mismo que el LIS siguiendo
+la propiedad de subestructura óptima.
+
+MSH -> Maximum possible Stack Height.
+MSH(i) = Máxima altura posible de la pila de cajas, con la caja i en el tope de la pila.
+MSH(i) = {max(MSH(j) + alto(i))} donde j < i y ancho(j) > ancho(i) y 
+y profundidad(j) > profundidad(i).
+
+Si no hay tal j, entonces, tomar MSH(i) = altura(i), caso base.
+
+4) Para obtener la altura máxima global, retornamos max(MSH(i)) donde 0 < i < n
