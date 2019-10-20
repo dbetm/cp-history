@@ -89,7 +89,7 @@ int maxStackHeight(Box arr[], int n) {
 
 int main() {
     int n;
-    cout << "Escribe el número de elementos: ";
+    cout << "Escribe el número de cajas: ";
     cin >> n;
     Box cajas[n];
     cout << "Escribe las tripletas por cada caja (alto, profundidad, ancho)" << endl;

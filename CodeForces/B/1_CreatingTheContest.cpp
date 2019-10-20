@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// Respuesta incorrecta
+// TLE
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -12,24 +12,23 @@ lli MAX = 1e9+7;
 
 int main() {
 	fastIO();
-    lli n, ans = 0, aux = 1;
+    lli n;
 	cin >> n;
 	lli arr[n];
+	lli lis[n];
 
-	cin >> arr[0];
+	for (int i = 0; i < n; i++) cin >> arr[i];
 
+	// Verificar la condición aj*2 >= ai, donde j < i
+	lis[0] = 1;
 	for (int i = 1; i < n; i++) {
-		cin >> arr[i];
-		if(arr[i-1] * 2 >= arr[i]) {
-			aux++;
-		}
-		else {
-			ans = max(ans, aux);
-			aux = 1;
-		}
-	}
+	   lis[i] = 1;
+	   for (int j = 0; j < i; j++) {
+		   if(arr[i] < arr[j]*2 && lis[i] < lis[j] + 1) lis[i] = lis[j] + 1;
+	   }
+   }
 
-	cout << ans << endl;
+	cout << (*max_element(lis, lis+n)) << endl;
 
 	return 0;
 }
