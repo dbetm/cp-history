@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// Solución incorrecta
+// No está bien :/
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -9,10 +9,9 @@ typedef vector<int> vi;
 typedef vector<long long int> vlli;
 typedef vector<double> vd;
 lli MAX = 1e9+7;
-bool tabla[101];
+lli tabla[10001][101];
 
-lli getMaxS(int b[], int n);
-void displaySolution(lli sol[], int n);
+lli getMaxS(int b[], int n, int lim);
 
 int main() {
 	fastIO
@@ -21,38 +20,27 @@ int main() {
     while(t--) {
         cin >> n;
         int b[n];
-        //memset(tabla, false, sizeof(tabla));
+        memset(tabla, -1, sizeof(tabla));
         for (int i = 0; i < n; i++) {
             cin >> b[i];
-            //tabla[b[i]] = true;
         }
-        cout << getMaxS(b, n) << endl;
+		cout << getMaxS(b, n-1, b[n-1]) << endl;
     }
 	return 0;
 }
 
-lli getMaxS(int b[], int n) {
-    lli maxS[n];
-    lli hip;
-    // Caso base
-        // i = 0
-    maxS[0] = 0;
-    displaySolution(maxS, n);
-    // Construimos la solución, "max S to i"
-    for (int i = 1; i < n; i++) {
-        hip = 0;
-        for (int j = b[i]; j >= 1; j--) {
-            hip = max(hip, (lli)abs(j - b[i-1]));
-        }
-        maxS[i] = maxS[i-1] + hip;
-    }
-    displaySolution(maxS, n);
-    return maxS[n-1];
-}
+lli getMaxS(int b[], int n, int lim) {
+	// Caso base
+	if(n == 0) return tabla[0][lim] = b[n];
+	else if(tabla[n][lim] != -1) return tabla[n][lim];
+	else if(n == 1) {
+		return tabla[1][lim] = abs(b[1] - b[0]);
+	}
+	lli ans = 0;
+	for (int i = 1; i <= lim; i++) {
+		ans = max(ans + abs(b[n] - b[n-1]), getMaxS(b, n-1, i));
+	}
+	if(n-1 >= 0) ans += getMaxS(b, n-1, b[n-1]);
 
-void displaySolution(lli sol[], int n) {
-    for (int i = 0; i < n-1; i++) {
-        cout << sol[i] << " ";
-    }
-    cout << sol[n-1] << endl;
+	return tabla[n][lim] = ans;
 }

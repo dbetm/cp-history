@@ -4,43 +4,51 @@ using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define fastIO() ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
 
-int getMinOps(vector<int> &chocolates, int n);
+int getMinOps(vector<int> &chocolates, int n, int menor);
 
 int main() {
     fastIO();
-    int t, n;
+    int t, n, menor;
     cin >> t;
     while(t--) {
         cin >> n;
+        menor = INT_MAX;
         vector<int> chocolates(n);
-        for (int i = 0; i < n; i++) cin >> chocolates[i];
-        cout << getMinOps(chocolates, n) << endl;
+        for (int i = 0; i < n; i++) {
+            cin >> chocolates[i];
+            menor = min(menor, chocolates[i]);
+        }
+        cout << getMinOps(chocolates, n, menor) << endl;
     }
     return 0;
 }
 
-int getMinOps(vector<int> &chocolates, int n) {
-    int totalOps = 0;
-    int minimo = chocolates[0], maximo = chocolates[0];
-    int cantidades[3] = {1, 2, 5};
-
-    for (int i = 1; i < n; i++) {
-        if(chocolates[i] > maximo) maximo = chocolates[i];
-        else if(chocolates[i] < minimo) minimo = chocolates[i];
-        if(maximo == minimo) continue;
-        int ans = INT_MAX, index;
-        for (int j = 0; j < 3; j++) {
-            int res = abs((minimo + cantidades[j]) - maximo);
-            if(res < ans) {
-                ans = res;
-                index = j;
+int getMinOps(vector<int> &chocolates, int n, int menor) {
+    int ans = 0, aux, cant;
+    int entropia = 0;
+    for (int i = 0; i < n; i++) entropia += chocolates[i] - menor;
+    entropia += menor;
+    //watch(menor) watch(entropia)
+    if(entropia != menor) {
+        // int valores[] = {1, 2, 5};
+        for (int i = 0; i < n; i++) {
+            cant = entropia - chocolates[i];
+            aux = 0;
+            if(cant >= 5) {
+                aux += cant / 5;
+                cant = cant % 5;
             }
+            if(cant >= 2) {
+                aux += cant / 2;
+                cant = cant % 2;
+            }
+            if(cant >= 1) {
+                aux += cant / 1;
+            }
+            ans = max(ans, aux);
         }
-        if(ans != INT_MAX) {
-            if(ans == 0) totalOps++;
-            else totalOps += ans+1;
-        }
+
     }
 
-    return totalOps;
+    return ans;
 }
