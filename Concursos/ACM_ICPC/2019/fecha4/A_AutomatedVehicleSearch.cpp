@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 // https://www.juezguapa.com/problemas/enunciado/automated-vehicle-search
 // Tags: search, implementation, simulation
+// TC: Big-Omega((n/s)*q)
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define fastIO ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
