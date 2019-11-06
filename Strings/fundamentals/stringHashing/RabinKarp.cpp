@@ -14,7 +14,7 @@ int main() {
 
     vector<int> ocurrencias;
     rabinKarp(texto, patron, ocurrencias);
-    cout << "Hay ocurrencias en las posiciones :" << endl;
+    cout << "Hay ocurrencias en las posiciones: " << endl;
     int n = ocurrencias.size();
     for (int i = 0; i < n; i++) {
         cout << "i: " << ocurrencias[i] << endl;
