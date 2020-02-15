@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+// https://omegaup.com/arena/problem/MCD-de-N-numeros#problems
 using namespace std;
 
 int mcd(int a, int b) {

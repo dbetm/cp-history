@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//
+// TLE
 // Tag(s):
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
@@ -12,6 +12,21 @@ typedef vector<double> vd;
 lli MAX = 1e9+7;
 
 int main() {
-    fastIO
+	fastIO
+    lli t, a, b, c, n;
+    cin >> t;
+    while(t--) {
+        cin >> a >> b >> c >> n;
+        lli maxi = max(a, max(b, c));
+        lli d = (a + b + c) - (3*maxi);
+        d += n;
+        bool flag;
+        if(d >= 0) {
+
+        }
+        else flag = false;
+        if(flag) cout << "YES" << endl;
+        else cout << "NO" << endl;
+    }
 	return 0;
 }

@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
-
+/*
+A Linear Diophantine Equation (in two variables) is an equation of the general form:
+    ax + by = c
+    where a, b, c are given integers, and x, y are unknown integers.
+*/
 using namespace std;
 
 int gcdExtended(int, int, int &, int &);
@@ -17,7 +21,12 @@ int main() {
     else cout << "It does not have any solution" << endl;
     return 0;
 }
-
+/*
+While the Euclidean algorithm calculates only the greatest common divisor (GCD) of
+two integers a and b, the extended version also finds a way to represent GCD in
+terms of a and b, i.e. coefficients x and y for which:
+    ax + by = gcd(a,b)
+*/
 int gcdExtended(int a, int b, int &x, int &y) {
     if(a == 0) {
         x = 0;
@@ -31,7 +40,7 @@ int gcdExtended(int a, int b, int &x, int &y) {
     y = x1;
     return d;
 }
-
+// Encuentra cualquier solución, si existe al menos una (obviamente).
 bool findAnySolution(int a, int b, int c, int &x0, int &y0, int &g) {
     g = gcdExtended(abs(a), abs(b), x0, y0);
     if(c % g) return false;

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+// https://omegaup.com/arena/problem/Formacion-para-honores#problems
 using namespace std;
 
 int main() {

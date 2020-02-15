@@ -1,4 +1,5 @@
 #include <stdio.h>
+// https://omegaup.com/arena/problem/ExamBidi3#problems
 typedef long long int lli;
 int main() {
     lli n;
