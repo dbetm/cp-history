@@ -2,7 +2,7 @@
 // https://omegaup.com/arena/problem/Casilla-para-votar#problems
 using namespace std;
 
-#define MAX 1000
+#define MAX 102
 int A[MAX][MAX];
 bool visitados[MAX][MAX];
 pair <int, int> tupla;
