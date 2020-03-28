@@ -1,14 +1,15 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+typedef long long int lli;
 
-int extendedGCD(int a, int b, int &x, int &k);
-bool findAnySolution(int a, int b, int c, int &x0, int &k0, int &g);
+lli extendedGCD(lli a, lli b, lli &x, lli &k);
+bool findAnySolution(lli a, lli b, lli c, lli &x0, lli &k0, lli &g);
 
 int main() {
     // ax + nk = b
-    int a, n, b;
-    int x, y, g;
+    lli a, n, b;
+    lli x, y, g;
 
     cout << "Type a, n y b:" << endl;
     cin >> a >> n >> b;
@@ -25,8 +26,8 @@ int main() {
     return 0;
 }
 
-bool findAnySolution(int a, int n, int b, int &x0, int &k0, int &g) {
-    g = extendedGCD(abs(a), abs(n), x0, k0);
+bool findAnySolution(lli a, lli n, lli b, lli &x0, lli &k0, lli &g) {
+    g = extendedGCD(a, n, x0, k0);
     if(b % g) return false;
 
     x0 *= b/g;
@@ -36,15 +37,15 @@ bool findAnySolution(int a, int n, int b, int &x0, int &k0, int &g) {
     return true;
 }
 
-int extendedGCD(int a, int n, int &x, int &k) {
+lli extendedGCD(lli a, lli n, lli &x, lli &k) {
     if(a == 0) {
         x = 0;
         k = 1;
         return n;
     }
 
-    int x1, k1;
-    int d = extendedGCD(n % a, a, x1, k1);
+    lli x1, k1;
+    lli d = extendedGCD(n % a, a, x1, k1);
     x = k1 - (n/a) * x1;
     k = x1;
     return d;
