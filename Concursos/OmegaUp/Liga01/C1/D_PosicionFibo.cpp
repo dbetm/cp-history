@@ -1,35 +1,36 @@
 #include <bits/stdc++.h>
-
-// Parcialmente correcta
-
+// https://omegaup.com/arena/problem/Posicion-Fibonacci/#problems
+// Tag(s): Implementación, math
 using namespace std;
-typedef long long int lli;
-
-lli findIndex(lli n) {
-	long double fibo = 2.078087 * log(n) + 1.672276;
-
-	// returning rounded off value of index
-	return round(fibo);
-}
+#define fastIO ios_base::sync_with_stdio(0); cin.tie(NULL);
+typedef unsigned long long int ulli;
 
 
-bool isFibo(lli n) {
-
-    lli ans = round((log(n) + log(sqrt(5))) / log((sqrt(5)+1)/2));
-    ans %= 60;
-
-    return (ans != 0);
-}
-
-// Driver program to test above function
 int main() {
-    lli n;
-    cin >> n;
-    if(n == 1) cout << 1 << endl;
-    else if(!isFibo(n)) {
-        cout << -1 << endl;
-    }
-    else {
-        cout << findIndex(n) << endl;
-    }
+	fastIO
+	ulli n, f1 = 1, f2 = 1, aux;
+	cin >> n;
+	int cont = 3;
+	bool encontrado = false;
+	if(n == 1) {
+		cout << 1 << endl;
+	}
+	else {
+		while(f1 < n) {
+			aux = f1;
+			f1 = f1 + f2;
+			f2 = aux;
+			if(f1 == n) {
+				encontrado = true;
+				break;
+			}
+			cont++;
+		}
+
+		if(!encontrado) cout << -1 << endl;
+		else cout << cont << endl;
+	}
+
+
+	return 0;
 }
