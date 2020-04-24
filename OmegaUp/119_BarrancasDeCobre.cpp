@@ -1,62 +1,40 @@
 #include <bits/stdc++.h>
-// Parcialmente correcta
+// https://omegaup.com/arena/problem/OMI2015LENGUAJE1/#problems
+// Tag(s): DP, implementación
 using namespace std;
+typedef long long int lli;
 
 int main() {
     ios_base::sync_with_stdio(NULL);
     cin.tie(NULL);
     int n, k;
+    lli maximo, suma = 0;
     cin >> n >> k;
-    int emociones[n];
-    int64_t diferencias[n];
-    int64_t pivote, suma = LLONG_MIN, aux = 0;
-    //bool bandera = false;
 
-    if(k == 1) {
-        for (int i = 0; i < n; i++) {
-            cin >> aux;
-            suma = max(aux, suma);
-        }
+    lli actual, anterior;
+    lli dif[n];
+    cin >> anterior;
+    for (size_t i = 0; i < n-1; i++) {
+        cin >> actual;
+        dif[i] = actual - anterior;
+        anterior = actual;
     }
-    else if(k == 2) {
-        int64_t actual, anterior;
-        cin >> anterior;
-        for (int i = 1; i < n; i++) {
-            cin >> actual;
-            aux = actual-anterior;
-            if(suma < aux) suma = aux;
-            anterior = actual;
-        }
+    // calcular hasta los primeros k-1 elementos
+    for (size_t i = 0; i < k-1; i++) {
+        suma += dif[i];
     }
-    else {
-        cin >> emociones[0] >> emociones[1];
-        diferencias[0] = emociones[1] - emociones[0];
-        aux = diferencias[0];
-        pivote = 0;
+    // apuntadores
+    int a, b;
+    maximo = suma;
 
-        int i;
-        for (i = 2; i < n; i++) {
-            cin >> emociones[i];
-            diferencias[i-1] = emociones[i] - emociones[i-1];
-            aux += diferencias[i-1];
-            //cout << diferencias[i-1] << endl;
-            if(i % (k-1) == 0) {
-                if(suma < aux) suma = aux;
-                break;
-            }
-        }
-        //cout << aux << endl;
-        aux -= diferencias[pivote++];
-
-        for (int j = i+1; j < n; j++) {
-            cin >> emociones[j];
-            diferencias[j-1] = emociones[j] - emociones[j-1];
-            aux += diferencias[j-1];
-            //cout << aux << endl;
-            if(suma < aux) suma = aux;
-            aux -= diferencias[pivote++];
-        }
+    // calcular los siguientes elementos
+    for (a = 0, b = k-1; b < n-1; a++, b++) {
+        suma -= dif[a];
+        suma += dif[b];
+        maximo = max(maximo, suma);
     }
-    cout << (int64_t)suma << endl;
+
+    cout << maximo << endl;
+
     return 0;
 }
