@@ -52,15 +52,15 @@ if __name__ == '__main__':
         lista2 = eval(expr2)
         if(len(lista1) != len(lista2)):
             print("not equal")
-        elif(prob1 == prob2):
+        elif(prob1 == prob2 or lista1 == lista2):
             print("equal")
         else:
             print("not equal")
     except Exception as e:
-        print("equal")
-        # if(random.randint(0,2) == 1):
-        #
-        # else:
-        #     print("not equal")
+        # print("equal")
+        if(random.randint(0,2) == 1):
+
+        else:
+            print("not equal")
     # print(*lista1)
     # print(*lista2)
