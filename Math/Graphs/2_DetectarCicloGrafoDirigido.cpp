@@ -63,7 +63,6 @@ Graph::~Graph() {
     delete [] this->recursiveStack;
 }
 
-
 int main() {
     int vertices, aristas, origen, destino;
     cout << "Vertices and aristas: ";
