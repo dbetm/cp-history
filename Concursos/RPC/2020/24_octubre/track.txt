@@ -1,0 +1,6 @@
+E 8
+G 7
+I 7
+H 6
+J 5 (parece DP)
+K 5 (árboles)

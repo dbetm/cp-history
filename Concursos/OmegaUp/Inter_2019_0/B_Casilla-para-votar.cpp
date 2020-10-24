@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
-// https://omegaup.com/arena/problem/Casilla-para-votar#problems
 using namespace std;
 
-#define MAX 102
+#define MAX 404
 int A[MAX][MAX];
 bool visitados[MAX][MAX];
 pair <int, int> tupla;
@@ -10,6 +9,8 @@ int n, m;
 
 pair <int, int> procesar();
 bool buscar(int i, int j);
+
+string rayos[] = {"agua", "montana", "pastizal"};
 
 int main() {
     int q, x, y;
@@ -28,9 +29,7 @@ int main() {
             pair <int, int> actual = procesar();
             cout << "(" << actual.first+1 << "," << actual.second+1 << ")" << endl;
         }
-        else if(A[x-1][y-1] == 2) cout << "pastizal" << endl;
-        else if(A[x-1][y-1] == 1) cout << "montana" << endl;
-        else cout << "agua" << endl;
+	else cout << rayos[A[x-1][y-1]] << endl;
     }
 
     return 0;
@@ -58,21 +57,10 @@ bool buscar(int i, int j) {
     if(i == tupla.first && j == tupla.second) return true;
 
     bool ans = false;
-    // abajo
-    if(i+1 < n && A[i+1][j] == 3) {
-        ans = buscar(i+1, j);
-    }
-    // derecha
-    if(j+1 < m && A[i][j+1] == 3 && !ans) {
-        ans = buscar(i, j+1);
-    }
-    // Izquierda
-    if(j-1 >= 0 && A[i][j-1] == 3 && !ans) {
-        ans = buscar(i, j-1);
-    }
-    // arriba
-    if(i-1 >= 0 && A[i-1][j] == 3 && !ans) {
-        ans = buscar(i-1, j);
-    }
+    if(i+1 < n && A[i+1][j] == 3) ans = buscar(i+1, j);
+    if(j+1 < m && A[i][j+1] == 3 && !ans) ans = buscar(i, j+1);
+    if(j-1 >= 0 && A[i][j-1] == 3 && !ans) ans = buscar(i, j-1);
+    if(i-1 >= 0 && A[i-1][j] == 3 && !ans) ans = buscar(i-1, j);
+
     return ans;
 }
