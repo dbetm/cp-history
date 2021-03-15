@@ -25,6 +25,6 @@ I love a lot the problem solving, learn about data structures and algorithms. I 
 
 ![Insignias OmegaUp](assets/2.png)
 
-2. November 2019. With my competitive programming team we classify for the regional final for [ACM-ICPC MX](https://icpc.global/), which is a national knockout. [A related article.](https://tec.mx/es/noticias/nacional/investigacion/congregan-en-el-tec-los-mejores-equipos-de-programadores-en-mexico)
+2. November 2019. My competitive programming team and me did classify to regional final for [ACM-ICPC MX](https://icpc.global/), which is a national knockout. [A related article.](https://tec.mx/es/noticias/nacional/investigacion/congregan-en-el-tec-los-mejores-equipos-de-programadores-en-mexico)
 
 ![Monterrey 2019](assets/1.jpg)
