@@ -9,6 +9,7 @@ typedef long long int lli;
 typedef vector<int> vi;
 typedef vector<long long int> vlli;
 typedef vector<double> vd;
+
 lli MAX = 1e9+7;
 
 class Solution {
