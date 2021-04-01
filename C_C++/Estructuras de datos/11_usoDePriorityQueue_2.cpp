@@ -9,7 +9,14 @@
 using namespace std;
 
 int main() {
-    priority_queue <int> pq;
+    priority_queue <int> pq; // max Heap
+    // Creando un Min Heap, la prioridad es tener los menores
+    priority_queue <int, vector<int>, greater<int>> pq2;
+    // construyendo desde un iterable (array o vector)
+    int array[] = {1, 8, 0, 34, 7, 8};
+    int n = 6;
+    priority_queue <int, vector<int>, greater<int>> pq3(array, array+n);
+
     // Agregar a la cola de prioridad los elementos
     cout << "100, 10, 20, 100, 70 y 2000" << endl;
     pq.push(100);
