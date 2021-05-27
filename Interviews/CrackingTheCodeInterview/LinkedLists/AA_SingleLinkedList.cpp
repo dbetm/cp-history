@@ -10,7 +10,10 @@ allowed).
 2. Find the nth to last element.
 3. Deleting a node in the middle of a single linked list, given only access to
 that node.
-4. 
+4. Sum two numbers that are stored in two linked list in reverse order, the
+result must be stored in a linked list.
+INPUT: (3->1->5) + (5->9->2)
+RESULT: (8->0->8).
 */
 
 struct Node {
@@ -28,6 +31,7 @@ class LinkedList {
         int countNodes();
     public:
         LinkedList();
+        Node* getHead();
         void insertNode(int data);
         void removeDuplicates();
         void printLinkedList();
@@ -38,6 +42,50 @@ class LinkedList {
         Node* getRandomMiddleNode();
         ~LinkedList();
 };
+// FUNCTIONS
+void sumTwoNumbers(LinkedList *lla, LinkedList *llb, LinkedList *result) {
+
+    Node *a = lla->getHead();
+    Node *b = llb->getHead();
+
+    int carry = 0, res;
+    while(a and b) {
+        res = a->data + b->data + carry;
+        carry = res / 10;
+        res = res % 10;
+        result->insertNode(res);
+
+        a = a->next;
+        b = b->next;
+    }
+
+    while(a) {
+        res = a->data + carry;
+        carry = res / 10;
+        res = res % 10;
+        result->insertNode(res);
+
+        a = a->next;
+    }
+
+    while(b) {
+        res = b->data + carry;
+        carry = res / 10;
+        res = res % 10;
+        result->insertNode(res);
+
+        b = b->next;
+    }
+
+    if(carry > 0) result->insertNode(carry);
+}
+
+
+// METHODS OF LINKED LIST
+
+Node * LinkedList::getHead() {
+    return this->head;
+}
 
 int LinkedList::countNodes() {
     int count = 0;
@@ -79,7 +127,7 @@ void LinkedList::removeDuplicates() {
                 Node *temp = cursor;
                 precursor->next = cursor->next;
                 cursor = cursor->next;
-                free(temp);
+                delete temp;
                 continue;
             }
             precursor = cursor;
@@ -137,11 +185,15 @@ void LinkedList::deleteMiddleNode(Node *node) {
         if(aux->next == node) {
             Node *tmp = node;
             aux->next = node->next;
-            free(tmp);
+            delete tmp;
             break;
         }
         aux = aux->next;
     }
+}
+
+bool LinkedList::isEmpty() {
+    return this->head == nullptr;
 }
 
 Node * LinkedList::getRandomMiddleNode() {
@@ -161,16 +213,20 @@ Node * LinkedList::getRandomMiddleNode() {
 }
 
 LinkedList::~LinkedList() {
-    while (this->head != NULL) {
-        // watch(this->head)
-        Node* temp = this->head;
+    Node *temp = nullptr;
+    while (this->head != nullptr) {
+        temp = this->head;
         this->head = this->head->next;
 
-        free(temp);
+        if(temp != nullptr) {
+            delete temp;
+            temp = nullptr;
+        }
     }
 }
 
 int main() {
+    /*
     int n, data;
     LinkedList ll;
     cout << "Type num of nodes: ";
@@ -180,6 +236,8 @@ int main() {
         cin >> data;
         ll.insertNode(data);
     }
+    */
+
     /*
     ll.printLinkedList();
     ll.removeDuplicates();
@@ -204,11 +262,40 @@ int main() {
     else cout << "NOT FOUND" << endl;
     */
 
+    /*
     ll.printLinkedList();
     Node *ans3 = ll.getRandomMiddleNode();
     cout << "Random node to delete: " << ans3->data << endl;
     ll.deleteMiddleNode(ans3);
     ll.printLinkedList();
+    */
+
+    // 4. SUM TWO NUMBERS
+    int data, n;
+    // First number
+    LinkedList lla;
+    cout << "Type num of nodes for list A: ";
+    cin >> n;
+    cout << "Type values for nodes for list A" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> data;
+        lla.insertNode(data);
+    }
+    // Second number
+    LinkedList llb;
+    cout << "Type num of nodes for list B: ";
+    cin >> n;
+    cout << "Type values for nodes for list B" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> data;
+        llb.insertNode(data);
+    }
+
+    // Compute the result
+    LinkedList result;
+    sumTwoNumbers(&lla, &llb, &result);
+    cout << "RESULT:" << endl;
+    result.printLinkedList();
 
     return 0;
 }
