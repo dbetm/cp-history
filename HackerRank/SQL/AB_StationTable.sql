@@ -10,6 +10,10 @@ SELECT DISTINCT CITY FROM STATION WHERE ID % 2 = 0;
 -- https://www.hackerrank.com/challenges/weather-observation-station-4/problem
 SELECT COUNT(*) - COUNT(DISTINCT CITY) FROM STATION;
 
+-- https://www.hackerrank.com/challenges/weather-observation-station-5/problem
+SELECT CITY, LENGTH(CITY) shortest FROM STATION ORDER BY shortest ASC, CITY ASC LIMIT 1;
+SELECT CITY, LENGTH(CITY) longest FROM STATION ORDER BY longest DESC, CITY DESC LIMIT 1;
+
 -- https://www.hackerrank.com/challenges/weather-observation-station-6/problem
 SELECT DISTINCT CITY FROM STATION WHERE CITY LIKE 'a%' OR CITY LIKE 'e%' OR CITY LIKE 'i%' OR CITY LIKE 'o%' OR CITY LIKE 'u%';
 -- Another solution
