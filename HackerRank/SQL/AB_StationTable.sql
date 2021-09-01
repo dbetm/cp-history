@@ -39,3 +39,15 @@ SELECT DISTINCT CITY FROM STATION WHERE CITY NOT RLIKE '^[AEIOU]' AND CITY NOT R
 
 -- https://www.hackerrank.com/challenges/weather-observation-station-13/problem
 SELECT ROUND(SUM(LAT_N), 4) FROM STATION WHERE LAT_N > 38.7880 AND LAT_N < 137.2345;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-14/problem
+SELECT TRUNCATE(MAX(LAT_N), 4) FROM STATION WHERE LAT_N < 137.2345;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-15/problem
+SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N < 137.2345 ORDER BY LAT_N DESC LIMIT 1;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-16/problem
+SELECT ROUND(MIN(LAT_N), 4) FROM STATION WHERE LAT_N > 38.7780;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-17/problem
+SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N > 38.7780 ORDER BY LAT_N ASC LIMIT 1;
