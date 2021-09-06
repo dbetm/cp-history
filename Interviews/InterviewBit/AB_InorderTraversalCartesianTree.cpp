@@ -36,7 +36,7 @@ TreeNode* buildTree(vector<int> &A) {
     return build(A, 0, A.size());
 }
 
-// Pre-order
+// In-order
 void printTree(TreeNode* root) {
     if(root == NULL) return;
 
