@@ -2,7 +2,7 @@
 :computer:
 My - competitive programming - history
 
-I love a lot the problem solving, learn about data structures and algorithms. I had a first interest in competitive programming just before the university (2016). In 2017 I started to practice with problems in HackerRank and OmegaUp, then in 2018 I was beginner participant at competitive programming contests (official contests like ACM-ICPC and CodeJam). In this repository also I have technical interview practice exercises.
+I enjoy problem solving, learning about data structures and algorithms. I had a first interest in competitive programming just before the university (2016). In 2017 I started to practice with problems in HackerRank and OmegaUp, then in 2018 I was beginner participant at competitive programming contests (official contests like ACM-ICPC and CodeJam). In this repository also I have technical interview practice exercises.
 
 <strong>The online judge that I've use are (links to my profiles, only 1-7 items):</strong>
 
