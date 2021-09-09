@@ -1,53 +1,40 @@
 #include <bits/stdc++.h>
-
+//
+// Tag(s):
 using namespace std;
-// No pasa
 
-void swap(int, int);
-int indexOfMinimum(int, int);
-void selectionSort(int);
-vector<int> A;
-int cont = 0;
+#define watch(x) cout << (#x) << " is " << x << endl;
+
+int getMinSwaps(vector<int> &arr);
 
 int main(int argc, char const *argv[]) {
-    int n, num;
+    int n;
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> num;
-        A.push_back(num);
-    }
-    selectionSort(n);
-    cout << ((n & 1) ? cont : cont-1) << endl;
+    vector<int> arr(n+1);
+
+    for (int i = 1; i <= n; ++i) cin >> arr[i];
+
+    cout << getMinSwaps(arr) << endl;
+
     return 0;
 }
 
-// Intercambiar de índice dos elementos del arreglo
-void swap(int firstIndex, int secondIndex) {
-    int temp = A[firstIndex];
-    A[firstIndex] = A[secondIndex];
-    A[secondIndex] = temp;
-}
+int getMinSwaps(vector<int> &arr) {
+    int n = arr.size()-1;
+    int ans = 0;
 
-// Encuentra el índice del elemento mínimo en el subarreglo
-int indexOfMinimum(int startIndex, int len) {
-    int minValue = A[startIndex];
-    int minIndex = startIndex;
-
-    for (int i = minIndex + 1; i < len; i++) {
-        if(A[i] < minValue) {
-            minIndex = i;
-            minValue = A[i];
-            cont++;
+    for (int i = 1; i <= n; ++i) {
+        if(arr[i] == i) continue;
+        int index;
+        for (int j = i+1; j <= n; ++j) {
+            if(arr[j] == i or arr[i] == j) {
+                index = j;
+                break;
+            }
         }
+        swap(arr[i], arr[index]);
+        ++ans;
     }
-    return minIndex;
-}
 
-// Ordenamiento por selección
-void selectionSort(int len) {
-    int ref;
-    for (int i = 0; i < len; i++) {
-        ref = indexOfMinimum(i, len);
-        swap(i, ref);
-    }
+    return ans;
 }

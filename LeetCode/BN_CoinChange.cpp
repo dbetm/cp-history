@@ -3,37 +3,36 @@
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
-//
-// Tag(s):
+#include <climits>
+// https://leetcode.com/problems/coin-change/
+// Tag(s): DP, recursion
 #define watch(x) cout << (#x) << " es " << x << endl;
 
 using namespace std;
 
 class Solution {
 public:
-    int coinchange(vector<int> &coins, int amount) {
-        int ans = 0;
-        int n = coins.size();
-
+    int compute(vector<int> &coins, int amount, vector<int> &dp) {
         if(amount == 0) return 0;
+        if(dp[amount] != -1) return dp[amount];
 
-        sort(coins.rbegin(), coins.rend());
+        int ans = INT_MAX, n = coins.size();
 
-        for (int i = 0; i < n; ++i) {
-            int factor = amount / coins[i];
-            watch(coins[i])
-            watch(factor)
-            if(factor < 1) continue;
-
-            ans += factor;
-            //int res = amount % (factor * coins[i]);
-            amount -= (factor * coins[i]);
-            //amount += res;
-
-            if(amount == 0) break;
+        for (int i = 0; i < n; i++) {
+            if((amount - coins[i]) >= 0) {
+                int subAns = compute(coins, amount-coins[i], dp);
+                if(subAns != INT_MAX and subAns < ans) {
+                    ans = 1 + subAns;
+                }
+            }
         }
 
-        if(amount != 0) ans = -1;
+        return dp[amount] = ans;
+    }
+
+    int coinChange(vector<int> &coins, int amount, vector<int> &dp) {
+        int ans = compute(coins, amount, dp);
+        if(ans == INT_MAX) return -1;
 
         return ans;
     }
@@ -45,11 +44,12 @@ int main() {
 
     cin >> n;
     vector<int> coins(n);
+    vector<int> dp(amount + 1, -1);
 
     for (int i = 0; i < n; ++i) cin >> coins[i];
     cin >> amount;
 
-    cout << "The min number of coins is: " << sol.coinchange(coins, amount) << endl;
+    cout << "Min # of coins is: " << sol.coinChange(coins, amount, dp) << endl;
 
     return 0;
 }

@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://leetcode.com/problems/design-linked-list/
+// Tag(s): data structures
 using namespace std;
+
+#define watch(x) cout << (#x) << " is " << x << endl;
 
 struct Node {
     int val;
@@ -32,7 +34,6 @@ public:
             cout << tmp->val << " ";
             tmp = tmp->next;
         }
-        cout << "-------------------" << endl;
     }
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
@@ -42,7 +43,7 @@ public:
         Node *tmp = this->head;
         int cont = 0;
 
-        while(tmp != nullptr and cont <= index) {
+        while(tmp != nullptr and cont < index) {
             tmp = tmp->next;
             ++cont;
         }
@@ -87,17 +88,16 @@ public:
         Node *prev = tmp;
         int cont = 0;
 
-        while(tmp != nullptr and cont <= index) {
+        while(tmp != nullptr and cont < index) {
             ++cont;
             prev = tmp;
             tmp = tmp->next;
         }
 
         if(prev != nullptr) {
-            Node* current = new Node(prev->val);
-            current->next = prev->next;
+            Node* current = new Node(val);
             prev->next = current;
-            prev->val = val;
+            current->next = tmp;
         }
         this->n++;
     }
@@ -110,27 +110,31 @@ public:
         Node *prev;
         int cont = 0;
 
-        while(tmp != nullptr and cont <= index) {
+        while(tmp != nullptr and cont < index) {
             prev = tmp;
             tmp = tmp->next;
             ++cont;
         }
 
-        if(this->head and this->tail) {
+        if(this->head == this->tail) {
             this->head->val = 0;
         }
         else if(tmp == this->tail) {
-            this->tail = prev;
 
-            free(prev->next);
+            this->tail = prev;
+            prev = prev->next;
+            this->tail->next = nullptr;
+
+            free(prev);
         }
-        else if(tmp == this->head) {
+        else if(index == 0) {
+            tmp = this->head;
             this->head = this->head->next;
 
             free(tmp);
         }
         else if(tmp != nullptr) {
-            prev = tmp->next;
+            prev->next = tmp->next;
 
             free(tmp);
         }
@@ -142,20 +146,20 @@ int main() {
     MyLinkedList linkedList;
 
     linkedList.addAtHead(1);
-    //cout << "1" << endl;
     linkedList.printList();
+
     linkedList.addAtTail(3);
-    //cout << "2" << endl;
     linkedList.printList();
+
     linkedList.addAtIndex(1, 2);
-    // cout << "3" << endl;
     linkedList.printList();
+
     cout << linkedList.get(1) << endl;
-    //cout << "4" << endl;
+
     linkedList.deleteAtIndex(1);
-    //cout << "5" << endl;
+    linkedList.printList();
+
     cout << linkedList.get(1) << endl;
-    // "6" << endl;
 
     return 0;
 }
