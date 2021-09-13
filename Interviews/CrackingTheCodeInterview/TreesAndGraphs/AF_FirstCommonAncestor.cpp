@@ -1,7 +1,11 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
+/*
+Design an algorithm and write code to find the first common ancestor of two
+nodes in a binary tree. Avoid storing additional nodes in a data structure.
+NOTE: This is not necessarily a binary search tree.
+*/
 #define watch(x) cout << (#x) << " is " << x << endl;
 #define assertm(exp, msg) assert(((void)msg, exp))
 
@@ -36,8 +40,8 @@ int main() {
     TreeNode *node1 = getRandomNode(root);
     TreeNode *node2 = getRandomNode(root);
 
-    cout << "Node 1, val: " << node1->val << endl;
-    cout << "Node 2, val: " << node2->val << endl;
+    cout << "Node #1, val: " << node1->val << endl;
+    cout << "Node #2, val: " << node2->val << endl;
 
     TreeNode *commonAncestor = findFirstCommonAncestor(root, node1, node2);
 
@@ -91,17 +95,47 @@ TreeNode *getRandomNode(TreeNode *root) {
     vector<TreeNode*> nodes;
     queue<TreeNode*> q;
 
+    q.push(root);
+
+    while(!q.empty()) {
+        TreeNode *tmp = q.front();
+        q.pop();
+
+        nodes.push_back(tmp);
+
+        if(tmp->left != nullptr) {
+            q.push(tmp->left);
+        }
+        if(tmp->right != nullptr) {
+            q.push(tmp->right);
+        }
+    }
+
     int n = nodes.size();
-    srand(time(0));
-    int index = rand() % n;
+
+    random_device rd;
+    mt19937_64 gen(rd());
+    uniform_int_distribution<unsigned int> dis;
+
+    int index = dis(gen) % n;
 
     return nodes[index];
 }
 
 TreeNode *findFirstCommonAncestor(TreeNode *root, TreeNode *a, TreeNode *b) {
-    TreeNode *ans = root;
+    // base cases
+    if(root == nullptr) return nullptr;
 
-    return ans;
+    if(root == a or root == b) return root;
+
+    TreeNode *leftSubtree = findFirstCommonAncestor(root->left, a, b);
+    TreeNode *rightSubtree = findFirstCommonAncestor(root->right, a, b);
+
+    if(leftSubtree and rightSubtree) return root;
+
+    if(leftSubtree) return leftSubtree;
+
+    return rightSubtree;
 }
 
 void traversalPostOrder(TreeNode *root) {

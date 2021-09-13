@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://www.hackerrank.com/challenges/new-year-chaos/problem
+// Tag(s): Implementation, arrays
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -13,29 +13,17 @@ lli MAX = 1e9+7;
 
 void minimumBribes(vector<int> &q) {
     int n = q.size()-1;
-    int positions[n+1];
     int ans = 0;
 
-    for (int i = 1; i <= n; ++i) positions[i] = i;
-
     for (int i = 1; i <= n; ++i) {
-        //watch(q[i])
-        //watch(positions[q[i]])
-        int delta = i - positions[q[i]];
-        if(delta < -2) {
+        int delta = q[i] - i;
+        if(delta > 2) {
             cout << "Too chaotic" << endl;
             return;
         }
-        else if(delta == -1) {
-            ans += 1;
-            positions[q[i]]--;
-            positions[q[i]-1]++;
-        }
-        else if(delta == -2) {
-            ans += 2;
-            positions[q[i]] -= 2;
-            positions[q[i]-1]++;
-            positions[q[i]-2]++;
+
+        for (int j = max(q[i]-1, 1); j < i; j++) {
+            if(q[i] < q[j]) ans++;
         }
     }
 
