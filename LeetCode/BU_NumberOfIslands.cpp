@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://leetcode.com/problems/number-of-islands/
+// Tag(s): Recursion, implemenation
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -13,26 +13,25 @@ lli MAX = 1e9+7;
 
 class Solution {
 private:
-    void explore(vector<vector<char>>& grid, int i, int j) {
-        if(grid[i][j] == '0') return;
+    void explore(vector<vector<char>> &grid, int i, int j) {
 
-        int m = grid.size();
-        int n = grid[0].size();
+        if(i < 0 || j < 0 || j >= (int)grid[0].size() || i >= (int)grid.size() || grid[i][j] == '0') return;
 
         grid[i][j] = '0';
         // up
-        if((i-1) >= 0 and grid[i-1][j] == '1')
-            return this->explore(grid, i-1, j);
+        this->explore(grid, i-1, j);
+
         // down
-        if((i+1) < m and grid[i+1][j] == '1')
-            return this->explore(grid, i+1, j);
+        this->explore(grid, i+1, j);
+
         // left
-        if((j-1) >= 0 and grid[i][j-1] == '1')
-            return this->explore(grid, i, j-1);
+        this->explore(grid, i, j-1);
+
         // right
-        if((j+1) < n and grid[i][j+1] == '1')
-            return this->explore(grid, i, j+1);
+        this->explore(grid, i, j+1);
+
     }
+
 public:
     int numIslands(vector<vector<char>>& grid) {
         int m = grid.size();
@@ -43,7 +42,7 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if(grid[i][j] == '1') {
-                    ans++;
+                    ++ans;
                     this->explore(grid, i, j);
                 }
             }
