@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://www.interviewbit.com/problems/rain-water-trapped/
+// Tag(s): implementation, arrays
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -23,20 +23,29 @@ int Solution::trap(const vector<int> &A) {
     int ans = 0;
     int n = A.size();
     int a, b;
-    int i = (A[0] == 0) ? 1 : 0;
+    int i = 0;
+
+    while(n-1 >= 0 and A[n-1] == 0) --n;
+
+    while(n-1 >= 0 and n-2 >= 0 and A[n-1] <= A[n-2]) --n;
+
+    while(i < n and A[i] == 0) ++i;
 
     while(i < n) {
         a = i;
         b = a + 1;
-        while(b < n and A[a] < A[b++]) {
+        pair<int, int> subMax;
+        subMax = {A[b], b};
 
+        while(b < n and A[a] > A[b]) {
+            if(subMax.first < A[b]) {
+                subMax = {A[b], b};
+            }
+            ++b;
         }
-        watch(a)
-        watch(b)
-        if(b == n) break;
-        if(A[b] > A[a] and a == 0) {
-            i = b;
-            continue;
+
+        if(b == n) {
+            b = subMax.second;
         }
 
         int base = min(A[a], A[b]);
@@ -46,7 +55,6 @@ int Solution::trap(const vector<int> &A) {
         }
         ans += delta;
 
-        //i = (delta == 0) ? b : b + 1;
         i = b;
     }
 

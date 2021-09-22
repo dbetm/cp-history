@@ -53,11 +53,9 @@ public:
             else {
                 tmp = tmp->children[key];
             }
-
-            if(i == (n-1)) {
-                tmp->isEndOfWord = true;
-            }
         }
+
+        tmp->isEndOfWord = true;
     }
 
     /** Returns if the word is in the trie. */
