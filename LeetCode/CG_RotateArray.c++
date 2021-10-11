@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://leetcode.com/problems/rotate-array/
+// Tag(s): Arrays, implementation
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -18,32 +18,15 @@ void printArr(vector<int>& nums) {
     cout << endl;
 }
 
-void rotateArray(vector<int>& nums, int k, int left) {
-    int n = nums.size();
-
-    if(left >= n-1) return;
-    watch(left)
-    int right = n - min(left, n-k);
-
-    int delta = min(k, n-left);
-    for (int i = 0; i < delta; ++i, ++left, ++right) {
-        swap(nums[left], nums[right]);
-    }
-
-    printArr(nums);
-
-    rotateArray(nums, k, left);
-}
-
 void rotate(vector<int>& nums, int k) {
     int n = nums.size();
     k = k % n;
-    printArr(nums);
-    rotateArray(nums, k, 0);
 
-    // for (right = n - k; right < n; ++right, ++left) {
-    //     swap(nums[left], nums[right]);
-    // }
+    if(k > 0) {
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k, nums.end());
+    }
 }
 
 int main() {
@@ -58,10 +41,7 @@ int main() {
     cin >> k;
     rotate(nums, k);
 
-    for (int i = 0; i < n; i++) {
-        cout << nums[i] << " ";
-    }
-    cout << endl;
+    printArr(nums);
 
 	return 0;
 }
