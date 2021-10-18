@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// Tag(s):
+// https://www.hackerrank.com/challenges/candies/problem
+// Tag(s): DP
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
@@ -11,31 +11,41 @@ typedef vector<long long int> vlli;
 typedef vector<double> vd;
 lli MAX = 1e9+7;
 
-long candies(int n, vector<int> a) {
-    int benefits[n];
-
-    benefits[0] = 1;
+int getIncre(vector<int> &a) {
+    int ans = 0, n = a.size();
 
     for (int i = 1; i < n; ++i) {
-        if(a[i-1] < a[i]) {
-            benefits[i] = benefits[i-1] + 1;
-        }
-        else if(a[i-1] == a[i]) {
-            benefits[i] = 1;
-        }
+        if(a[i-1] <= a[i]) ++ans;
+    }
+
+    return ans;
+}
+
+long candies(int n, vector<int> &a) {
+    int numInc = getIncre(a);
+    int candies[n];
+    candies[0] = 1;
+
+    if(numInc < int(n / 2)) reverse(a.begin(), a.end());
+
+    for (int i = 1; i < n; ++i) {
+        if(a[i-1] < a[i]) candies[i] = candies[i-1] + 1;
+        else if(a[i-1] == a[i]) candies[i] = 1;
         else {
-            benefits[i] = 1;
-            if(benefits[i-1] == 1) { // propagate
-                benefits[i-1]++;
+            candies[i] = 1;
+            int j = i;
+            int x = i-1;
+
+            while(x >= 0 and a[x] > a[j] and candies[x] <= candies[j]) {
+                candies[x]++;
+                --x;
+                --j;
             }
         }
     }
 
     long ans = 0;
-
-    for (int i = 0; i < n; ++i) {
-        ans += benefits[i];
-    }
+    for (int i = 0; i < n; ++i) ans += candies[i];
 
     return ans;
 }
