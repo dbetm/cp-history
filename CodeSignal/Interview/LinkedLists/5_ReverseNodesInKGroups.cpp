@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-
+// https://app.codesignal.com/interview-practice/task/XP2Wn9pwZW6hvqH67/description
+// Tag(s): Linked Lists, implementation
 using namespace std;
 #define watch(x) cout << (#x) << " is " << x << endl;
 
@@ -12,6 +13,7 @@ struct ListNode {
 };
 
 void printList(ListNode<int> *l) {
+    cout << "LIST" << endl;
     while(l != nullptr) {
         cout << l->value << "-";
         l = l->next;
@@ -29,12 +31,6 @@ ListNode<int> * reverseKList(ListNode<int> *l, const int &k) {
         l = faster;
         faster = tmp;
     }
-    ListNode<int> *x = l;
-    for (int i = 0; i < k; i++) {
-        cout << x->value << "->";
-        x = x->next;
-    }
-    cout << endl;
 
     return l;
 }
@@ -49,56 +45,23 @@ ListNode<int> * reverseNodesInKGroups(ListNode<int> * l, int k) {
     while(right != nullptr) {
 
         right = right->next;
+        if(right == nullptr) break;
         cont++;
 
         if(cont % k == 0) {
             ListNode<int> *tmpLeft = left;
-            ListNode<int> *front = reverseKList(tmpLeft, k-1);
+            right = right->next;
 
+            ListNode<int> *front = reverseKList(tmpLeft, k-1);
             if(cont == k) l = front;
             else aux->next = front;
 
+            cont++;
             aux = left;
             left = right;
         }
     }
     if(aux != nullptr) aux->next = left;
-
-    /*
-    while(right != nullptr) {
-        cont++;
-
-        if(cont % k == 0) {
-            leftTmp = left;
-            //watch(right->value)
-            left = right->next;
-            right = right->next;
-            //watch(right->value)
-            //watch(left->value)
-            //cont++;
-            ListNode<int> *front = reverseKList(leftTmp, k-1);
-            watch(front->value)
-            if(aux != nullptr) {
-                while(front != nullptr and front->next == nullptr) {
-                    watch(front->value)
-                    front = front->next;
-                }
-                aux->next = front;
-                aux = front;
-            }
-            else {
-                aux = l;
-                l = front;
-            }
-            watch(aux->value)
-            cout << "-----------------------" << endl;
-        }
-        else right = right->next;
-        //watch(right->value)
-        //if(cont >= 10) break;
-    }
-    //aux->next = right;
-    */
 
     return l;
 }
