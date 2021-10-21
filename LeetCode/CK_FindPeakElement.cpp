@@ -18,7 +18,7 @@ void explore(vector<int> &nums, int left, int right, int &ans) {
     explore(nums, middle + 1, right, ans);
 }
 
-int findPeakElement(vector<int>& nums) {
+int findPeakElement2(vector<int>& nums) {
     int n = nums.size();
 
     if(n == 1 or nums[0] > nums[1]) return 0;
@@ -28,6 +28,32 @@ int findPeakElement(vector<int>& nums) {
     explore(nums, 0, n-1, ans);
 
     return ans;
+}
+
+/* Best solution:
+Fact, in the numbs array we have always falling and rising slopes, so
+we can use binary search to seek for the peak, so if we have on the middle mid
+1. nums[mid] > nums[mid + 1]
+    Then we have a falling slope and we need to search in [left, mid]
+2. nums[mid] < nums[mid + 1]
+    We have a rising slope and we need to search in (mid, right]
+*/
+int findPeakElement(vector<int>& nums) {
+    int n = nums.size();
+    int left = 0, right = n - 1;
+
+    while(left < right) {
+        int middle = ((right - left) / 2) + left;
+
+        if(nums[middle] > nums[middle + 1]) {
+            right = middle;
+        }
+        else {
+            left = middle + 1;
+        }
+    }
+
+    return left;
 }
 
 int main() {
