@@ -1,58 +1,32 @@
-#
-# tag(s):
+# https://www.hackerrank.com/challenges/count-triplets-1/problem
+# tag(s): HashMap, maths
 
 def countTriplets(arr, r):
-    # possible fix: computing while creating the map iterating from n-1 to 0
-    # update: we need to make sure that j < k,
-        # first compute j < k, arr[j]*r  < arr[k]*r²
-        # then compute i < j, arr[i] < arr[j]*r
+    right = dict()
+    left = dict()
     ans = 0
-    n = len(arr)
 
-    all_elements = dict()
+    for x in arr:
+        if x in right:
+            right[x] += 1
+        else:
+            right[x] = 1
 
-    pre_1 = dict()
+    for x in arr:
+        right[x] -= 1
 
-    if n < 3:
-        return ans
+        if (x * r) in right:
+            c1 = right[x * r]
 
-    if r == 1:
-        pass
-    else:
-        for i in range(n-1, -1, -1):
-            x = arr[i] * r
+            if (x / r) in left:
+                c2 = left[x / r]
 
-            if x in pre_1:
+                ans += c1 * c2
 
-            if x in all_elements:
-                all_elements[x] += 1
-            else:
-                all_elements[x] = 1
-
-    if r == 1:
-        for x in arr:
-            if x in all_elements:
-                all_elements[x] += 1
-            else:
-                all_elements[x] = 1
-        for element, count in all_elements.items():
-            if count < 3:
-                continue
-            ans += ((count) * (count-1) * (count-2)) // 6
-    else:
-        for i in range(n-1, -1, -1):
-            x = arr[i] * r
-
-            if x in all_elements:
-                aux = all_elements[x]
-                x *= r
-                if x in all_elements:
-                    ans += aux * all_elements[x]
-
-            if arr[i] in all_elements:
-                all_elements[arr[i]] += 1
-            else:
-                all_elements[arr[i]] = 1
+        if x in left:
+            left[x] += 1
+        else:
+            left[x] = 1
 
     return ans
 
@@ -80,7 +54,7 @@ def run_tests():
 
 
 if __name__ == '__main__':
-    #run_tests()
+    run_tests()
     n, r = list(map(int, input().split()))
     arr = list(map(int, input().split())) # unordered array
 

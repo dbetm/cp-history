@@ -8,52 +8,6 @@ using namespace std;
 typedef long long int lli;
 
 class Solution {
-    bool compareDeltaOne(string a, string b) {
-        bool ans = true;
-        int deltas = 0;
-
-        int n = a.size();
-
-        for (int i = 0; i < n; i++) {
-            if(a[i] != b[i]) deltas++;
-            if(deltas > 1) {
-                ans = false;
-                break;
-            }
-        }
-
-        return ans;
-    }
-
-    lli genMinSeq(string a, string b, vector<string> &wordList, int i, lli dp[]) {
-        if(a == b) return dp[i] = 1;
-        if(i >= (int)wordList.size()) return INT_MAX;
-        if(dp[i] != -1) return dp[i];
-
-
-        lli ans = INT_MAX;
-        int n = wordList.size();
-        for (int w = 0; w < n; ++w) {
-            if(i == w) continue;
-            if(this->compareDeltaOne(a, wordList[w])) {
-                //watch(a)
-                //watch(wordList[i-1])
-                lli including = 1 + this->genMinSeq(
-                    wordList[w], b, wordList, i+1, dp
-                );
-                lli excluding = this->genMinSeq(
-                    a, b, wordList, i+1, dp
-                );
-
-                if(including < excluding) {
-                    ans = including;
-                }
-                else  ans = excluding;
-            }
-        }
-
-        return dp[i] = ans;
-    }
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         if(find(wordList.begin(), wordList.end(), endWord) == wordList.end())
