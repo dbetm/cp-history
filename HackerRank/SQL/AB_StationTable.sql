@@ -51,3 +51,21 @@ SELECT ROUND(MIN(LAT_N), 4) FROM STATION WHERE LAT_N > 38.7780;
 
 -- https://www.hackerrank.com/challenges/weather-observation-station-17/problem
 SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N > 38.7780 ORDER BY LAT_N ASC LIMIT 1;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-18/problem
+SELECT ROUND(ABS(MIN(LAT_N)-MAX(LAT_N)) + ABS(MIN(LONG_W)-MAX(LONG_W)), 4) FROM STATION;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-19
+SELECT
+ROUND(SQRT(POWER(MIN(LAT_N)-MAX(LAT_N), 2) + POWER(MIN(LONG_W)-MAX(LONG_W), 2)), 4)
+FROM STATION;
+
+-- https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+-- compute median
+SELECT ROUND(AVG(dd.LAT_N), 4)
+FROM (
+SELECT S.LAT_N, @rownum:=@rownum+1 as `row_number`, @total_rows:=@rownum
+  FROM STATION S, (SELECT @rownum:=0) r
+  ORDER BY S.LAT_N
+) as dd
+WHERE dd.row_number IN (FLOOR((@total_rows+1) / 2), FLOOR((@total_rows+2) / 2));

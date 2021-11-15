@@ -18,17 +18,6 @@ int main() {
     // inicial-inicial
     double distance = sqrt(pow(kx1 - ox1, 2) + pow(ky1 - oy1, 2));
     if(distance > ans) ans = distance;
-    /*
-    watch(distance)
-    // inicial-final
-    distance = sqrt(pow(kx1 - ox2, 2) + pow(ky1 - oy2, 2));
-    if(distance > ans) ans = distance;
-    watch(distance)
-    // final-inicial
-    distance = sqrt(pow(kx2 - ox1, 2) + pow(ky2 - oy1, 2));
-    if(distance > ans) ans = distance;
-    watch(distance)
-    */
     // final-final
     distance = sqrt(pow(kx2 - ox2, 2) + pow(ky2 - oy2, 2));
     if(distance > ans) ans = distance;
