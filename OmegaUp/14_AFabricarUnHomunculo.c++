@@ -1,29 +1,35 @@
 #include <iostream>
+#include <set>
 #include <vector>
-#include <algorithm>
-#include <map>
-// TLE
+
 using namespace std;
 
 int main() {
-    int n, m, num;
-    scanf("%d", &n);
-    map<int, bool> dic;
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &num);
-        dic.insert(make_pair(num, true));
+    // Faster I/O
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    vector<string> output;
+
+    int n, m, i, num, target;
+    cin >> n;
+    set<int> materials;
+
+    for (i = n-1; i >= 0; --i) {
+        cin >> num;
+        materials.insert(num);
     }
+
     cin >> m;
-    for (int i = 0; i < m; i++) {
-        scanf("%d", &num);
-        try {
-            if(dic[num]) printf("SI\n");
-            else printf("NO\n");
-        }
-        catch(...) {
-            printf("NO\n");
-        }
+    for (i = m-1; i >= 0; --i) {
+        cin >> target;
+        if(materials.find(target) != materials.end())
+            output.push_back("SI");
+        else output.push_back("NO");
     }
+
+    for(string ans : output)
+        cout << ans << endl;
 
     return 0;
 }

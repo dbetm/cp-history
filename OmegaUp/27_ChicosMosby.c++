@@ -1,18 +1,34 @@
-#include <iostream>
-// WA
+#include <bits/stdc++.h>
+// https://omegaup.com/arena/problem/OMI-2016-Chicos-Mosby/#problems
+// Tags: maths, implementation
 using namespace std;
 typedef long long int lli;
 
 
 int main() {
-	lli n, m, x, y;
+	lli n, m;
 	cin >> n >> m;
 
-	x = max(n, m);
-	y = min(n, m);
+	int cont = 0, multi;
 
-	lli res = (x / y) + 2 * (x % y);
-	cout << res << endl;
+	if(m == n) {
+		cont = 1;
+	}
+	else {
+		do {
+			if(m > n) {
+				multi = m / n;
+				m = m - (n * multi);
+			}
+			else {
+				multi = n / m;
+				n = n - (m * multi);
+			}
+			cont += multi;
+		} while(m >= 1 and n >= 1);
+	}
+
+	cout << cont << endl;
 
 	return 0;
 }
