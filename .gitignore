@@ -1,2 +1,10 @@
 *.exe
 *.bin
+
+
+# python
+/__pycache__
+__pycache__/
+
+# editors
+.vscode

@@ -1,5 +1,8 @@
 
-def int2bin(n: int):
+from math import isclose
+
+
+def int_2_bin(n: int):
     ans = ""
 
     while n:
@@ -9,10 +12,15 @@ def int2bin(n: int):
     return ans[::-1]
 
 
-def dec2bin(x: float):
-    """To print the decimal part, we can multiply by 2 and check
-    if the 2*n is greater than or equal to one. This is essentially
-    <<shifting>> the fractional sum.
+def dec_2_bin(x: float):
+    """ How to convert the fractional part of a decimal number to a binary 
+    representation? 
+    A decimal number like this: 3.72 is = 3 + 7*(1/10^1) + 2*(1/10^2)
+    We need to check when any decimal part is 2-power or more, so we can
+    multiply by 2 the decimal part in an iterative way and when the result has
+    an integer part >= 1 then, we can append '1' to the ans.
+
+    Only fractions with a denominator which is a power of two can be finitely represented in a binary form
     """
     ans = ""
 
@@ -20,13 +28,14 @@ def dec2bin(x: float):
         if len(ans) > 32:
             raise Exception()
 
-        if x == 1:
+        # base case, 1 is power of two
+        if isclose(x, 1.0):
             ans += "1"
             break
 
         r = x * 2
         print("x: ", x, "ans: ", ans, "r:", r)
-        input()
+
         if r >= 1:
             ans += "1"
             x = r - 1
@@ -42,8 +51,8 @@ if __name__ == '__main__':
 
     try:
         inte, deci = number.split(".")
-        int_str = int2bin(int(inte))
-        dec_str = dec2bin(float(f".{deci}"))
+        int_str = int_2_bin(int(inte))
+        dec_str = dec_2_bin(float(f".{deci}"))
         # it's wrong the decimal part
         print(f"{int_str}.{dec_str}")
     except Exception as e:
