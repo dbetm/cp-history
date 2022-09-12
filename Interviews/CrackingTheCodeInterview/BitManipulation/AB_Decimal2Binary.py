@@ -1,4 +1,8 @@
-
+"""
+Given a (decimal - e.g. 3.72) number that is passed in as a string,
+print the binary representation. If the number can not be represented
+accurately in binary, print “ERROR”.
+"""
 from math import isclose
 
 
@@ -13,14 +17,15 @@ def int_2_bin(n: int):
 
 
 def dec_2_bin(x: float):
-    """ How to convert the fractional part of a decimal number to a binary 
-    representation? 
+    """ How to convert the fractional part of a decimal number to a binary
+    representation?
     A decimal number like this: 3.72 is = 3 + 7*(1/10^1) + 2*(1/10^2)
     We need to check when any decimal part is 2-power or more, so we can
     multiply by 2 the decimal part in an iterative way and when the result has
     an integer part >= 1 then, we can append '1' to the ans.
 
-    Only fractions with a denominator which is a power of two can be finitely represented in a binary form
+    Only fractions with a denominator which is a power of two can be finitely
+    represented in a binary form.
     """
     ans = ""
 
