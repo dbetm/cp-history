@@ -2,8 +2,8 @@
 that have the same number of 1 bits in their binary representation.
 """
 
-""" Approaches
-1) Brute force: Given n as the input integer, then iterate n+k and n-t, and for
+""" Approach
+Brute force: Given n as the input integer, then iterate n+k and n-t, and for
 every n+i | n-j check if the number of bits it's the same. O(max(k, t)).
 max(k, t) < 2*n
 """
@@ -18,6 +18,7 @@ def count_bits(n: int) -> int:
 
 
 def find_next_blabla_est(n: int, delta: int = 1) -> int:
+    orig_n = n
     expected_num_bits = count_bits(n)
 
     if expected_num_bits == 1:
@@ -30,11 +31,8 @@ def find_next_blabla_est(n: int, delta: int = 1) -> int:
     while expected_num_bits != count_bits(n):
         n += delta
 
-    return n
-
-
-def find_next_largest(n: int) -> int:
-    num_bits = count_bits(n)
+        if n == 0:
+            return orig_n
 
     return n
 
