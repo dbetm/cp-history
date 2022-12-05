@@ -16,7 +16,7 @@ def convert_int_to_str_bin(n: int) -> str:
 def count_differences(num1: str, num2: str) -> int:
     assert len(num1) == len(num2)
     cont = 0
-
+    # Alternative: It's possible to use XOR ane then count then 1's bits.
     for a_i, b_i in zip(num1, num2):
         if a_i != b_i:
             cont += 1

@@ -1,6 +1,7 @@
 *.exe
 *.bin
 *.o
+*.class
 
 
 # python
