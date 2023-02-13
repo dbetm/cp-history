@@ -22,9 +22,8 @@ def get_min_deletions(s1_map: dict, s2_map: dict) -> int:
         else:
             total_deletions += abs(value - s2_map[s1_key])
             del s2_map[s1_key]
-    
-    for _, value in s2_map.items():
-        total_deletions += value
+
+    total_deletions += sum(s2_map.values())
 
     return total_deletions
 
