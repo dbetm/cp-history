@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 // https://www.hackerrank.com/challenges/countingsort2/problem
-// tag(s): sorting, implementations
+// tag(s): sorting, implementation
 
 using namespace std;
 
