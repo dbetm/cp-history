@@ -1,5 +1,2 @@
-1
 3
-mpxz
-abcd
-wlmf
+1 2 3
