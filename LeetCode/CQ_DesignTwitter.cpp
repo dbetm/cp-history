@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 // https://leetcode.com/problems/design-twitter/
-// Tag(s): Implementatiion
+// Tag(s): Implementation
 using namespace std;
 
 #define watch(x) cout << (#x) << " is " << x << endl;
