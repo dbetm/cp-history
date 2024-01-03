@@ -1,0 +1,1 @@
+Only proposal of algorithms are written if they are better than my own solution.
