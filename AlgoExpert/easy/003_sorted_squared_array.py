@@ -1,3 +1,7 @@
+# solved
+# tags: arrays, pointers
+
+
 def sortedSquaredArray(array):
     """My first solution
     Time: O(n * log(n))
