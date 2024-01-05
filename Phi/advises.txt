@@ -1,2 +1,0 @@
-1) Don't code if you don't check the algorithm.
-2) Check limits for avoid overflow.
