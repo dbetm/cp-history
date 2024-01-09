@@ -1,4 +1,4 @@
-# 
+# solved
 # tags: math, arrays
 
 
