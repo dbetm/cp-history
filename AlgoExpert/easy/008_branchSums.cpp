@@ -60,6 +60,7 @@ void BinaryTree::printTree() {
 void explore(BinaryTree* node, vector<int> &ans, int currentSum) {
     if(node->left == nullptr and node->right == nullptr) {
         ans.push_back(currentSum);
+        return;
     }
 
     if(node->left) {
