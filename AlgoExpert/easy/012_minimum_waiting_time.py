@@ -1,5 +1,5 @@
-#
-# tags:
+# solved
+# tags: implementation
 
 
 def minimumWaitingTime(queries):
@@ -21,7 +21,7 @@ def minimumWaitingTime(queries):
     return ans
 
 def minimumWaitingTime2(queries):
-    # Proposal, same complexity as my solutin
+    # Proposal, same complexity as my solution
     queries.sort()
     total = 0
     n = len(queries)
