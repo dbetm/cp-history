@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 //
-// Tag(s):
+// tags:
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define EPS 1.19209e-07
