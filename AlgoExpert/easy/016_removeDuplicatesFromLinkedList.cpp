@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//
-// tags:
+// solved
+// tags: linked-list, implementation
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 
@@ -58,6 +58,23 @@ LinkedList* removeDuplicatesFromLinkedList(LinkedList* linkedList) {
     return head;
 }
 
+LinkedList* removeDuplicatesFromLinkedList2(LinkedList* linkedList) {
+    /*My solution 2:
+    Time: O(n)
+    Space: O(1)
+    */
+    LinkedList* head = linkedList;
+
+    while(linkedList != nullptr) {
+        if(linkedList->next != nullptr and linkedList->next->value == linkedList->value) {
+            linkedList->next = linkedList->next->next;
+        }
+        else linkedList = linkedList->next;
+    }
+
+    return head;
+}
+
 
 int main() {
     int n;
@@ -79,7 +96,7 @@ int main() {
 
     printLinkedList(list);
 
-    auto primed = removeDuplicatesFromLinkedList(list);
+    auto primed = removeDuplicatesFromLinkedList2(list);
 
     printLinkedList(primed);
 
