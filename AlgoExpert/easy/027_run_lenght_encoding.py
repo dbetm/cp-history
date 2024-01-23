@@ -20,7 +20,7 @@ def runLengthEncoding(string):
         while idx < n and char == string[idx] and cont < LIMIT_LENGHT:
             cont += 1
             idx += 1
-        
+
         encoded_string += f"{cont}{char}"
 
     return encoded_string
