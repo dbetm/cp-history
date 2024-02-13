@@ -1,4 +1,5 @@
 FILEPATH?=AlgoExpert/easy/017_middleNode.cpp
+NO_INPUT?=no
 FILENAME:=$(notdir $(FILEPATH))
 OBJ_NAME := $(patsubst %.cpp,%.o,$(FILENAME))
 
@@ -13,7 +14,11 @@ cpp:
 		echo "$(GREEN)compiling...$(NC)"; \
 		g++ -std=c++14 $(FILEPATH) -o output/$(OBJ_NAME) || exit 0; \
 		echo "$(YELLOW)executing...$(NC)"; \
-		output/$(OBJ_NAME) < $(CURRENT_DIR)/input.txt; \
+		if [ "$(NO_INPUT)" = "yes" ]; then \
+			output/$(OBJ_NAME); \
+		else \
+			output/$(OBJ_NAME) < $(CURRENT_DIR)/input.txt; \
+		fi \
 	)
 
 py:
