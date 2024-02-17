@@ -1,68 +1,15 @@
 #include <bits/stdc++.h>
+#include "BST.h"
 // solved
 // tags: bst, binary tree, traversal
 using namespace std;
 #define watch(x) cout << (#x) << " is " << (x) << endl;
-
-
-class BST {
-    public:
-        int value;
-        BST* left;
-        BST* right;
-
-        BST(int val) {
-            value = val;
-            left = nullptr;
-            right = nullptr;
-        }
-
-        BST& insert(int val) {
-            if(val < this->value) {
-                if(this->left == nullptr) this->left = new BST(val);
-                else this->left->insert(val);
-            }
-            else {
-                if(this->right == nullptr) this->right = new BST(val);
-                else this->right->insert(val);
-            }
-
-            return *this;
-        }
-
-        void printTree() {
-            queue<BST*> myQ;
-            myQ.push(this);
-            myQ.push(NULL);
-            // we insert NULL to point the end of a level
-
-            while(!myQ.empty()) {
-                BST *node = myQ.front();
-                myQ.pop();
-
-                if(node == NULL) {
-                    if(!myQ.empty()) {
-                        myQ.push(NULL);
-                    }
-                    cout << endl;
-                }
-                else {
-                    cout << node->value << " ";
-                    if(node->left) myQ.push(node->left);
-                    if(node->right) myQ.push(node->right);
-                }
-            }
-
-            cout << "------------------------------" << endl;
-        }
-};
 
 /*My solution:
 -------------------------------------------------
 Time: O(n)
 Space: O(n)
 */
-
 
 void inOrderTraverse(BST* tree, vector<int>& array) {
     /* The idea is first explore left branches, then get the current value

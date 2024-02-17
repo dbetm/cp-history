@@ -1,100 +1,59 @@
 #include <bits/stdc++.h>
-//
-// tags:
+#include "BST.h"
+// solved
+// tags: binary search, bst, pointers, recursion
 using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 
 
-class BST {
-    public:
-        int value;
-        BST* left;
-        BST* right;
+void buildBST(vector<int> array, int left, int right, BST* tree, bool insert=false) {
+    if(left > right) return;
 
-        BST(int value) {
-            this->value = value;
-            left = nullptr;
-            right = nullptr;
-        }
-
-        void insert(int value) {
-            if (value < this->value) {
-                if (left == nullptr) {
-                    left = new BST(value);
-                }
-                else {
-                    left->insert(value);
-                }
-            }
-            else {
-                if (right == nullptr) {
-                    right = new BST(value);
-                }
-                else {
-                    right->insert(value);
-                }
-            }
-        }
-
-        void printTree() {
-            queue<BST*> myQ;
-            myQ.push(this);
-            myQ.push(NULL);
-            // we insert NULL to point the end of a level
-
-            while(!myQ.empty()) {
-                BST *node = myQ.front();
-                myQ.pop();
-
-                if(node == NULL) {
-                    if(!myQ.empty()) {
-                        myQ.push(NULL);
-                    }
-                    cout << endl;
-                }
-                else {
-                    cout << node->value << " ";
-                    if(node->left) myQ.push(node->left);
-                    if(node->right) myQ.push(node->right);
-                }
-            }
-
-            cout << "------------------------------" << endl;
-        }
-};
-
-
-void buildBST(vector<int> array, int left, int right, BST* tree) {
     int idx = ((right - left) / 2) + left;
+    //cout << "idx: " << idx << ", left: " << left << ", right: " << right << endl; 
+    if(insert) tree->insert(array[idx]);
 
-    
+    if(left < right) {
+        // first half
+        buildBST(array, left, idx-1, tree, true);
+        // second half
+        buildBST(array, idx+1, right, tree, true);
+    }
 }
 
 
 BST* minHeightBst(vector<int> array) {
-    BST* bst = nullptr;
+    /*My solution
+    Time: O(n)
+    Space: O(n)
+    */
+    int left = 0;
+    int right = array.size() - 1;
+    int idx = ((right - left) / 2) + left; 
+    int root = array[idx];
 
-    buildBST(array, 0, array.size(), bst);
+    BST* bst = new BST(root);
+
+    buildBST(array, 0, array.size() - 1, bst, false);
 
     return bst;
 }
 
 
 int main() {
-    int root, n;
+    int n;
     cin >> n;
-    cin >> root;
-    BST bst(root);
-
-    n--;
+    vector<int> array;
 
     while(n--) {
-        int value;
-        cin >> value;
-        bst.insert(value);
+        int tmp;
+        cin >> tmp;
+        array.push_back(tmp);
     }
 
-    bst.printTree();
+    auto bst = minHeightBst(array);
+
+    bst->printTree();
 
 	return 0;
 }
