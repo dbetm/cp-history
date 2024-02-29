@@ -16,7 +16,10 @@ class BinaryTree {
             this->left = nullptr;
             this->right = nullptr;
         }
+
         void insert(vector<int> values) {
+            /*It doesn't work when there is unbalanced branches*/
+
             queue<BinaryTree*> items;
             // root was already inserted
             items.push(this);
@@ -34,16 +37,26 @@ class BinaryTree {
                 else {
                     if(idx < n) {
                         node->left = new BinaryTree(values[idx]);
-                        idx += 1;
                         items.push(node->left);
+                        idx += 1;
                     }
                     if(idx < n) {
                         node->right = new BinaryTree(values[idx]);
-                        idx += 1;
                         items.push(node->right);
+                        idx += 1;
                     }
                 }
             }
+        }
+
+        BinaryTree* insertSingle(int value, bool toLeft=true) {
+            if(toLeft) {
+                this->left = new BinaryTree(value);
+                return this->left;
+            }
+
+            this->right = new BinaryTree(value);
+            return this->right;
         }
 
         void print() {
