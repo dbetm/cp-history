@@ -4,7 +4,7 @@
 def numberOfWaysToMakeChange(n, denoms):
     """My solution
     Time: O(m * n)
-    Space: O(1)
+    Space: O(n)
 
     Where m is the number of denominations and n the target.
     """
