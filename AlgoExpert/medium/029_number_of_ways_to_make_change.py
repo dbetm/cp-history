@@ -13,19 +13,23 @@ def numberOfWaysToMakeChange(n, denoms):
 
     tmp = [0 for _ in range(n+1)]
     dp = [tmp, tmp]
+    ans = 0
+    top, down = 1, 0
 
     for denom in denoms:
         for j in range(1, n+1):
-            dp[1][j] = dp[0][j]
+            dp[top][j] = dp[down][j]
 
             if j == denom:
-                dp[1][j] += 1
+                dp[top][j] += 1
             elif j - denom > 0:
-                dp[1][j] += dp[1][j-denom]
+                dp[top][j] += dp[top][j-denom]
 
-        dp[0] = dp[1]
+        # swap indexes
+        top, down = down, top
+        ans = dp[top][-1]
 
-    return dp[1][-1]
+    return ans
 
 
 if __name__ == "__main__":
