@@ -21,11 +21,11 @@ def levenshteinDistance(str1, str2):
             if str1[j-1] == str2[i]:
                 dp[top][j] = dp[down][j-1]
             else:
-                insert = 1 + dp[down][j]
-                delete = 1 + dp[top][j-1]
-                replace = 1 + dp[down][j-1]
+                insert = dp[down][j]
+                delete = dp[top][j-1]
+                replace = dp[down][j-1]
 
-                dp[top][j] = min(min(insert, delete), replace)
+                dp[top][j] = 1 + min(min(insert, delete), replace)
 
         ans = dp[top][-1]
         down, top = top, down
