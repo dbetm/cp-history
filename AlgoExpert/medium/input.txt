@@ -1,7 +1,9 @@
-3
-0 1 2
-1 0 2
-1 2 0
-2 1 0
-1 2 0
-0 2 1
+createSet(0)
+createSet(1)
+createSet(2)
+createSet(3)
+union(0, 2)
+find(0)
+find(1)
+find(2)
+find(3)
