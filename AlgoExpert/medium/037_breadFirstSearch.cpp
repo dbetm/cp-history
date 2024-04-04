@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-
+// solved
+// tags: bfs, tree
 using namespace std;
 
 // Do not edit the class below except
@@ -14,6 +15,13 @@ class Node {
         Node(string str) { name = str; }
 
         vector<string> breadthFirstSearch(vector<string>* array) {
+            /*My solution:
+            Time: O(v + h)
+            Space: O(v)
+
+            Where v is the number of vertices of the input graph and
+            h is the heigh of the tree.
+            */
             queue<Node*> q;
             q.push(this);
             q.push(NULL);
