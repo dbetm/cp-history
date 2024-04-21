@@ -85,22 +85,18 @@ def minimumPassesOfMatrix2(matrix: list):
                     num_passes += 1 
             else:
                 if (x-1) >= 0 and matrix[x-1][y] < 0:
-                    #num_conversions += 1
                     print("adding", matrix[x-1][y])
                     matrix[x-1][y] = abs(matrix[x-1][y])
                     queue.append((matrix[x-1][y], x-1, y))
                 if (x+1) < n and matrix[x+1][y] < 0:
-                    #num_conversions += 1
                     print("adding", matrix[x+1][y])
                     matrix[x+1][y] = abs(matrix[x+1][y])
                     queue.append((matrix[x+1][y], x+1, y))
                 if (y-1) >= 0 and matrix[x][y-1] < 0:
-                    #num_conversions += 1
                     print("adding", matrix[x][y-1])
                     matrix[x][y-1] = abs(matrix[x][y-1])
                     queue.append((matrix[x][y-1], x, y-1))
                 if (y+1) < m and matrix[x][y+1] < 0:
-                    #num_conversions += 1
                     print("adding", matrix[x][y+1])
                     matrix[x][y+1] = abs(matrix[x][y+1])
                     queue.append((matrix[x][y+1], x, y+1))
