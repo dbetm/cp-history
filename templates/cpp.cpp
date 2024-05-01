@@ -3,6 +3,7 @@
 // tags:
 using namespace std;
 #define watch(x) cout << (#x) << " is " << (x) << endl;
+#define watch2(x, y) cout << (#x) << " is " << (x) << ", " << (#y) << " is " << (y) << endl;
 #define EPS 1.19209e-07
 #define fastIO ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
 typedef long long int lli;
