@@ -30,6 +30,16 @@ class LinkedList {
             }
         }
 
+        void addOneExisting(LinkedList* list) {
+            auto tmp = this;
+
+            while(tmp->next != nullptr) {
+                tmp = tmp->next;
+            }
+
+            tmp->next = list;
+        }
+
         vector<int> getNodesInArray() {
             vector<int> nodes;
             auto tmp = this;
