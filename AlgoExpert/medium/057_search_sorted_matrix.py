@@ -1,9 +1,7 @@
 # solved
 # tags: sorting, implementation, binary-search
-
 from bisect import bisect_left
 
-# TODO: Check optimized version
 
 def binary_search_col(matrix, col, left, right, target):
     if left >= right:
@@ -55,6 +53,29 @@ def searchInSortedMatrix(matrix, target):
     return (-1, -1)
 
 
+def searchInSortedMatrix2(matrix, target):
+    """Proposal
+    Time: O(n + m)
+    Space: O(1)
+    """
+    n, m = len(matrix), len(matrix[0])
+    i, j = 0, m-1
+
+    while True:
+        if matrix[i][j] == target:
+            return (i, j)
+
+        if matrix[i][j] < target and i+1 < n:
+            i += 1
+        elif matrix[i][j] > target and j-1 >= 0:
+            j -= 1
+        else:
+            break
+
+    return (-1, -1)
+
+
+
 if __name__ == "__main__":
     n, m = list(map(int, input().split()))
     target = int(input())
@@ -64,4 +85,4 @@ if __name__ == "__main__":
         row = list(map(int, input().split()))
         matrix.append(row)
 
-    print(searchInSortedMatrix(matrix, target))
+    print(searchInSortedMatrix2(matrix, target))
