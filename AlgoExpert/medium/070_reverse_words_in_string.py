@@ -1,5 +1,5 @@
-#
-# tags:
+# solved
+# tags: strings, implementation
 
 
 def split(string) -> list:
