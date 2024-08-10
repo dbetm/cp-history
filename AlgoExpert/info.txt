@@ -1,1 +1,8 @@
 Only proposal of algorithms are written if they are better than my own solution.
+
+
+Note: 
+In some codes, when using a list as a queue, I'm assuming that ops like queue.pop(0)
+are constant time, but you know that under the hood it's a linear operation. Using a 
+linked list could be the right thing (or in-built library), but a list was used by
+simplicity. 
