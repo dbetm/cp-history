@@ -79,7 +79,40 @@ def sortedSquaredArray3(array):
     return output
 
 
+def sortedSquaredArray4(arr):
+    n = len(arr)
+    positive_cursor = 0
+    negative_cursor = 0
+    output = []
+
+    while negative_cursor < n and arr[negative_cursor] < 0:
+        negative_cursor += 1
+
+    positive_cursor = negative_cursor - 1
+    negative_cursor -= 1
+
+    while negative_cursor >= 0 and positive_cursor < n:
+        sqd_neg = arr[negative_cursor]**2
+        sqd_pos = arr[positive_cursor]**2
+
+        if sqd_neg <= sqd_pos:
+            output.append(sqd_neg)
+            negative_cursor -= 1
+        else:
+            output.append(sqd_pos)
+            positive_cursor += 1
+
+    for i in range(negative_cursor, -1, -1):
+        output.append(arr[i]**2)
+
+    for i in range(positive_cursor, n):
+        output.append(arr[i]**2)
+
+    return output
+
+
+
 if __name__ == "__main__":
     array = list(map(int, input().rstrip().split(" ")))
 
-    print(sortedSquaredArray(array))
+    print(sortedSquaredArray4(array))
