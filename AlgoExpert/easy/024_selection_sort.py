@@ -19,7 +19,7 @@ def find_min(array, current_idx):
 
 def selectionSort(array):
     """My solution:
-    Time: O(n^1)
+    Time: O(n^2)
     Space: O(1)
     """
     n = len(array)
