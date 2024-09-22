@@ -5,7 +5,7 @@ using namespace std;
 #define watch(x) cout << (#x) << " es " << (x) << endl;
 #define fastIO ios_base::sync_with_stdio(NULL); cin.tie(NULL); cout.tie(NULL);
 
-long int arr[10000000];
+long int arr[10000000]; // 10^7
 
 int main() {
     fastIO
