@@ -82,7 +82,7 @@ vector<int> branchSums(BinaryTree* root) {
     Space: O(m)
 
     n => number of nodes
-    m => number of leafs / branches
+    m => number of leafs or branches
     */
     vector<int> ans;
 
