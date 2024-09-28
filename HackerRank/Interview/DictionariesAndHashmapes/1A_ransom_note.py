@@ -9,7 +9,7 @@ def check_if_can_build_note(magazine: list, note: list) -> bool:
     is_possible = True
 
     for word in note:
-        if word not in available_word_list or available_word_list[word] == 0:
+        if available_word_list[word] == 0:
             is_possible = False
             break
 
