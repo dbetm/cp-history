@@ -1,6 +1,6 @@
 from typing import List
 
-# https://leetcode.com/problems/points-that-intersect-with-cars/submissions/
+# https://leetcode.com/problems/points-that-intersect-with-cars/description/
 # tags: sets, implementation
 
 
