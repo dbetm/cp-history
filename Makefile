@@ -30,5 +30,9 @@ cpp:
 py:
 	@( \
 		echo "$(YELLOW)executing...$(NC)"; \
-		python3 $(FILEPATH) < $(CURRENT_DIR)/input.txt; \
+		if [ "$(NO_INPUT)" = "yes" ]; then \
+			python3 $(FILEPATH); \
+		else \
+			python3 $(FILEPATH) < $(CURRENT_DIR)/input.txt; \
+		fi \
 	)
