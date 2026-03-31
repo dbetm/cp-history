@@ -2,7 +2,7 @@
 :computer:
 My - competitive programming - history
 
-I enjoy problem solving, learning about data structures and algorithms. I had a first interest in competitive programming just before the university (2016). In 2017 I started to practice with problems in HackerRank and OmegaUp, then in 2018 I was beginner participant at competitive programming contests (official contests like ACM-ICPC and CodeJam). In this repository also I have technical interview practice exercises.
+I've been passionate about problem solving and exploring data structures and algorithms since 2016, when I first discovered competitive programming. Starting in 2017, I sharpened my skills on platforms like HackerRank and OmegaUp, and by 2018 I was competing in official contests such as ACM-ICPC and Google Code Jam. This repository also includes my technical interview preparation exercises.
 
 <strong>The online judge that I've use are (links to my profiles, only 1-7 items):</strong>
 
@@ -28,3 +28,13 @@ I enjoy problem solving, learning about data structures and algorithms. I had a 
 2. November 2019. My competitive programming team and me did classify to regional final for [ACM-ICPC MX](https://icpc.global/), which is a national knockout. [A related article.](https://tec.mx/es/noticias/nacional/investigacion/congregan-en-el-tec-los-mejores-equipos-de-programadores-en-mexico)
 
 ![Monterrey 2019](assets/1.jpg)
+
+
+## Execute a solution
+
+For example, if you wanna execute `UVa/Root/bars.cpp`
+On MacOS and Linux/OS dist, you can use: `make cpp FILEPATH=UVa/Root/bars.cpp`
+
+Important the input must defined at `input.txt` file at the same directory level of the problem.
+
+For python files you must use: `make py` ...
